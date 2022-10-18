@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+
+$custom-typography: mat.define-typography-config(
+  // Specify "Comic Sans" as the default font family for all levels.
+  $font-family:  'Raleway',
+);
+
+// Now we have sweet buttons with Comic Sans.
+@include mat.core($custom-typography);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Raleway', sans-serif !important;}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./assets/scss/main.scss";

@@ -1,0 +1,10 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.bg-image{
+  width: 100%;
+  background: linear-gradient(0deg, rgb(0 0 0 / 76%), rgb(0 0 0 / 78%)), url(../assets/images/heros/bann-top.png) center top no-repeat, url(../assets/images/heros/ban-bot.png) bottom left no-repeat , url(../assets/images/heros/hero-bg-1.jpg) no-repeat top center/cover;
+  padding: 40px 40px 40px 40px;
+  position: relative;
+  overflow: hidden;
+}
