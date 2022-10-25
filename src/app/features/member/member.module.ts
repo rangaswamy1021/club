@@ -12,12 +12,14 @@ import { PublicationsComponent } from './components/publications/publications.co
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { MembershipComponent } from './components/membership/membership.component';
 import { AboutUsComponent } from './containers/about-us/about-us.component';
+import { SharedModule } from '@shared/shared.module';
+import { DashboardComponent } from './containers/dashboard/dashboard.component';
 
 
 @NgModule({
-  imports: [CommonModule, MemberRoutingModule ],
+  imports: [CommonModule, SharedModule, MemberRoutingModule ],
   exports: [CarouselComponent],
-  declarations: [CarouselComponent, DestinationsComponent, MemberComponent, HomeHeroComponent, ClubExperienceComponent, BenefitsComponent, ResortsComponent, PublicationsComponent, NewsletterComponent, MembershipComponent, AboutUsComponent],
+  declarations: [CarouselComponent, DestinationsComponent, MemberComponent, HomeHeroComponent, ClubExperienceComponent, BenefitsComponent, ResortsComponent, PublicationsComponent, NewsletterComponent, MembershipComponent, AboutUsComponent, DashboardComponent],
   providers: [],
 })
 export class MemberModule { }
