@@ -1,4 +1,3 @@
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgModule } from '@angular/core';
 import { DestinationsComponent } from './components/destinations/destinations.component';
@@ -16,7 +15,7 @@ import { AboutUsComponent } from './containers/about-us/about-us.component';
 
 
 @NgModule({
-  imports: [CommonModule, CarouselModule, MemberRoutingModule ],
+  imports: [CommonModule, MemberRoutingModule ],
   exports: [CarouselComponent],
   declarations: [CarouselComponent, DestinationsComponent, MemberComponent, HomeHeroComponent, ClubExperienceComponent, BenefitsComponent, ResortsComponent, PublicationsComponent, NewsletterComponent, MembershipComponent, AboutUsComponent],
   providers: [],
