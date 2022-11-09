@@ -1,0 +1,111 @@
+<ng-container *ngIf="!child">
+    <div
+        [ngClass]="{'sl-horizontal-navigation-menu-active': trigger.menuOpen,
+                 'sl-horizontal-navigation-menu-active-forced': item.active}"
+        [matMenuTriggerFor]="matMenu"
+        (onMenuOpen)="triggerChangeDetection()"
+        (onMenuClose)="triggerChangeDetection()"
+        #trigger="matMenuTrigger">
+        <ng-container *ngTemplateOutlet="itemTemplate; context: {$implicit: item}"></ng-container>
+    </div>
+</ng-container>
+
+<mat-menu
+    class="sl-horizontal-navigation-menu-panel"
+    [overlapTrigger]="false"
+    #matMenu="matMenu">
+
+    <ng-container *ngFor="let item of item.children; trackBy: trackByFn">
+
+        <!-- Skip the hidden items -->
+        <ng-container *ngIf="(item.hidden && !item.hidden(item)) || !item.hidden">
+
+            <!-- Basic -->
+            <ng-container *ngIf="item.type === 'basic'">
+                <div
+                    class="sl-horizontal-navigation-menu-item"
+                    [disabled]="item.disabled"
+                    mat-menu-item>
+                    <sl-horizontal-navigation-basic-item
+                        [item]="item"
+                        [name]="name"></sl-horizontal-navigation-basic-item>
+                </div>
+            </ng-container>
+
+            <!-- Branch: aside, collapsable, group -->
+            <ng-container *ngIf="item.type === 'aside' || item.type === 'collapsable' || item.type === 'group'">
+                <div
+                    class="sl-horizontal-navigation-menu-item"
+                    [disabled]="item.disabled"
+                    [matMenuTriggerFor]="branch.matMenu"
+                    mat-menu-item>
+                    <ng-container *ngTemplateOutlet="itemTemplate; context: {$implicit: item}"></ng-container>
+                    <sl-horizontal-navigation-branch-item
+                        [child]="true"
+                        [item]="item"
+                        [name]="name"
+                        #branch></sl-horizontal-navigation-branch-item>
+                </div>
+            </ng-container>
+
+
+        </ng-container>
+
+    </ng-container>
+
+</mat-menu>
+
+<!-- Item template -->
+<ng-template
+    let-item
+    #itemTemplate>
+
+    <div
+        class="horizontal-navigation-item-wrapper"
+        [class.sl-horizontal-navigation-item-has-subtitle]="!!item.subtitle"
+        [ngClass]="item.classes?.wrapper">
+
+        <div
+            class="sl-horizontal-navigation-item"
+            [ngClass]="{'sl-horizontal-navigation-item-disabled': item.disabled,
+                         'sl-horizontal-navigation-item-active-forced': item.active}"
+            [matTooltip]="item.tooltip || ''">
+
+            <!-- Icon -->
+            <!-- <ng-container *ngIf="item.icon">
+                <mat-icon
+                    class="horizontal-navigation-item-icon"
+                    [ngClass]="item.classes?.icon"
+                    [svgIcon]="item.icon"></mat-icon>
+            </ng-container> -->
+
+            <!-- Title & Subtitle -->
+            <div class="sl-horizontal-navigation-item-title-wrapper">
+                <div class="sl-horizontal-navigation-menu-item">
+                    <span [ngClass]="item.classes?.title">
+                        {{item.title}}
+                    </span>
+                </div>
+                <ng-container *ngIf="item.subtitle">
+                    <div class="sl-horizontal-navigation-item-subtitle text-hint">
+                        <span [ngClass]="item.classes?.subtitle">
+                            {{item.subtitle}}
+                        </span>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- Badge -->
+            <ng-container *ngIf="item.badge">
+                <div class="sl-horizontal-navigation-item-badge">
+                    <div
+                        class="sl-horizontal-navigation-item-badge-content"
+                        [ngClass]="item.badge.classes">
+                        {{item.badge.title}}
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+</ng-template>

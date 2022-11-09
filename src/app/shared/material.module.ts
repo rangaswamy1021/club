@@ -9,9 +9,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   exports: [
+    MatTooltipModule,
+    MatDividerModule,
     MatToolbarModule,
     MatIconModule,
     MatInputModule,
@@ -21,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatMenuModule
   ],
 })
 export class MaterialModule {}
