@@ -1,0 +1,105 @@
+   <!-- Sign Up form -->
+   <form class="mt-0" [formGroup]="memberShipForm">
+
+    <!-- Email field -->
+    <mat-form-field class="w-full">
+      <mat-label>Email address</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="memberShipForm.get('email')?.hasError('required')">
+        Email address is required
+      </mat-error>
+      <mat-error *ngIf="memberShipForm.get('email')?.hasError('email')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+
+    <!-- Mobile field -->
+    <mat-form-field class="w-full">
+      <mat-label>Mobile</mat-label>
+      <input matInput formControlName="mobileNumber">
+      <mat-error *ngIf="memberShipForm.get('mobileNumber')?.hasError('required')">
+        Mobile Number is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password field -->
+    <mat-form-field class="w-full">
+      <mat-label>Password</mat-label>
+      <input  matInput type="password" [formControlName]="'password'" #passwordField>
+      <button mat-icon-button type="button"
+        (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+        matSuffix>
+        <span *ngIf="passwordField.type === 'password'" class="text-gray-400 text-lg material-icons">
+          visibility
+        </span>
+        <span *ngIf="passwordField.type === 'text'" class="text-gray-400 text-lg material-icons">
+          visibility_off
+        </span>
+
+      </button>
+      <mat-error>
+        Password is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Current city</mat-label>
+      <mat-select formControlName="currentCity" [placeholder]="'Country / Region'">
+        <mat-option value="" disabled="" selected="">Current city</mat-option>
+        <mat-option value="Ahmedabad">Ahmedabad</mat-option>
+        <mat-option value="Bangalore">Bangalore</mat-option>
+        <mat-option value="Chandigarh">Chandigarh</mat-option>
+        <mat-option value="Chennai">Chennai</mat-option>
+        <mat-option value="New Delhi">New Delhi</mat-option>
+        <mat-option value="Hyderabad">Hyderabad</mat-option>
+        <mat-option value="Jaipur">Jaipur</mat-option>
+        <mat-option value="Cochin">Cochin</mat-option>
+        <mat-option value="Kolkata">Kolkata</mat-option>
+        <mat-option value="Lucknow">Lucknow</mat-option>
+        <mat-option value="Mumbai">Mumbai</mat-option>
+        <mat-option value="Pune">Pune</mat-option>
+      </mat-select>
+      <mat-error *ngIf="memberShipForm.get('currentCity')?.hasError('required')">
+        Current city is required
+      </mat-error>
+
+  </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Age Group</mat-label>
+      <mat-select formControlName="ageGroup" [placeholder]="'Country / Region'">
+        <mat-option value="" disabled="" selected="">Age group</mat-option>
+        <mat-option value="24">&lt;24</mat-option>
+        <mat-option value="25-28">25-28</mat-option>
+        <mat-option value="29-35">29-35</mat-option>
+        <mat-option value="36-49">36-49</mat-option>
+        <mat-option value="50-55">50-55</mat-option>
+        <mat-option value=">55">&gt;55</mat-option>
+      </mat-select>
+      <mat-error *ngIf="memberShipForm.get('ageGroup')?.hasError('required')">
+        Age group is required
+      </mat-error>
+
+  </mat-form-field>
+
+       <!-- ToS and PP -->
+       <div class="inline-flex items-end w-full mt-1.5 mb-6">
+        <mat-checkbox [color]="'primary'">
+          <span class="text-sm">
+            I agree to the Terms of Service <br> and Privacy Policy</span>
+
+        </mat-checkbox>
+      </div>
+
+    <!-- Submit button -->
+    <button class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500" mat-flat-button
+      [disabled]="memberShipForm.invalid" (click)="signUp()">
+      <span *ngIf="!memberShipForm.disabled">
+        Submit
+      </span>
+      <mat-progress-spinner *ngIf="memberShipForm.disabled" [diameter]="24" [mode]="'indeterminate'">
+      </mat-progress-spinner>
+    </button>
+
+  </form>

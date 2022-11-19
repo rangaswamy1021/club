@@ -1,0 +1,8 @@
+{
+  "/*": {
+    "target": "https://auth-dev.regalatithi.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+}
+}

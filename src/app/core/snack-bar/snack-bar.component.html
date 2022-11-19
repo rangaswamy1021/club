@@ -1,0 +1,21 @@
+<div class="d-flex align-items-center">
+  <div class="data" *ngIf="errors.length ==0">{{error}}</div>
+  <div class="error-message" *ngIf="errors.length > 0">
+    <div class="regal-message error">
+      <div class="errors">
+        <ul class="regal-message-desc">
+          <ng-container *ngFor="let error of errors">
+            <li>
+              {{error}}
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="dismiss ml-auto">
+    <button mat-icon-button (click)="snackBarRef.dismiss()">
+      <mat-icon> close</mat-icon>
+    </button>
+  </div>
+</div>

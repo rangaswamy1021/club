@@ -4,10 +4,18 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeadBannerComponent } from './components/head-banner/head-banner.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  imports: [BrowserAnimationsModule, HttpClientModule],
-  declarations: [HeaderComponent, FooterComponent, HeadBannerComponent],
+  imports: [BrowserAnimationsModule, HttpClientModule, MatIconModule, RouterModule],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    HeadBannerComponent,
+    SnackBarComponent
+  ],
   exports: [HeaderComponent, FooterComponent, HeadBannerComponent],
   providers: [],
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MemberService } from '@features/member/services/member.service';
+import { AuthService } from '@core/auth/auth.service';
 
 @Component({
   selector: 'app-membership',
@@ -14,7 +14,7 @@ export class MembershipComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private readonly memberService: MemberService,
+    private readonly authService: AuthService,
     private readonly router: Router
   ) { }
 
@@ -25,13 +25,11 @@ export class MembershipComponent implements OnInit {
   buildForm(): void {
             // Create the form
             this.memberShipForm = this.fb.group({
-              fullname      : ['', Validators.required],
-              username      : ['', Validators.required],
               email     : ['', [Validators.required, Validators.email]],
-              mobile  : ['', Validators.required],
+              mobileNumber  : ['', Validators.required],
               password  : ['', Validators.required],
-              currentcity   : [''],
-              agegroup   : [''],
+              currentCity   : [''],
+              ageGroup   : [''],
           }
       );
   }
@@ -40,7 +38,7 @@ export class MembershipComponent implements OnInit {
     if(this.memberShipForm.invalid){
       return;
     }
-    this.memberService.signUp(this.memberShipForm.value).subscribe((res)=>{
+    this.authService.signUp(this.memberShipForm.value).subscribe((res)=>{
         this.router.navigate([`/dashboard`])
         console.log(res);
     })

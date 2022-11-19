@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl:'http://192.46.211.48:1337/api'
+  authApiUrl:'https://auth-dev.regalatithi.com',
+  baseApiUrl:'https://base-dev.regalatithi.com'
 };
 
 /*

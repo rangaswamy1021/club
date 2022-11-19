@@ -11,7 +11,13 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('@features/member/member.module').then(m => m.MemberModule)
+  },
+
+  {
+    path: 'auth',
+    loadChildren: () => import('@features/authentication/authentication.module').then(m => m.AuthenticationModule)
   }
+
 
 ];
 
