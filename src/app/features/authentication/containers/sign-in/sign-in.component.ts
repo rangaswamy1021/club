@@ -22,8 +22,8 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
     // Create the form
     this.signInForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      email: ['vipin.vipin.g498@gmail.com', [Validators.required, Validators.email]],
+      password: ['Test@1234', Validators.required],
     });
   }
 
@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
    */
   signIn(): void {
     this.authService.signIn(this.signInForm.value).subscribe((res) => {
-      this.router.navigate([`/dashboard`])
+      this.router.navigate([`/dashboard/profile/add`])
       console.log(res);
     });
   }

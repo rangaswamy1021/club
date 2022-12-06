@@ -12,10 +12,6 @@ export const routes: Routes = [
   {
     path: 'about-us',
     component: AboutUsComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
   }
 ]
 

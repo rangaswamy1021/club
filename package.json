@@ -17,10 +17,13 @@
     "@angular/core": "^14.2.0",
     "@angular/forms": "^14.2.0",
     "@angular/material": "^14.2.5",
+    "@angular/material-moment-adapter": "^14.2.7",
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "angular-animations": "^0.11.0",
+    "moment": "^2.29.3",
+    "ngx-cookie-service": "^14.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

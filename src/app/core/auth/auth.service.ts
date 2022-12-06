@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env';
 import { ResetPassword, SignIn, SignUp } from '@features/member/models/member';
 import { Observable, tap } from 'rxjs';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   /**
    * Register a new member
@@ -30,7 +31,12 @@ export class AuthService {
   signIn(credentials: SignIn): Observable<any> {
     return this.http
       .post<SignIn>(`${environment.authApiUrl}/signin`, credentials)
-      .pipe(tap((_res) => {}));
+      .pipe(tap((res) => {
+        const token = res.token;
+        localStorage.setItem("token", token)
+        this.cookieService.set("token", token)
+        console.log(res)
+      }));
   }
 
   /**

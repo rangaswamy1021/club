@@ -10,11 +10,22 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 
 
 @NgModule({
   exports: [
+    MatDividerModule,
+    MatMenuModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
     MatInputModule,
