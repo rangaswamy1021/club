@@ -19,59 +19,31 @@
                         Place</th>
                       <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Checkin</th>
                       <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Checkout</th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">No of persons</th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Cell</th>
-
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">No of Adults
+                      </th>
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">No of Childs
+                      </th>
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Action
+                      </th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-200 bg-white">
-                    <tr>
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Goa
+                    <ng-container *ngFor="let booking of (bookings$ | async)">
+                      <tr>
+                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                          {{booking?.property}}
                         </td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">22-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">25-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">cell</td>
-
-                    </tr>
-                    <tr>
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Goa
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {{booking?.checkInDate | date:'dd-MM-YYYY'}}</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {{booking?.checkOutDate | date:'dd-MM-YYYY'}}</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{booking?.noOfAdults}}</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{booking?.noOfChildren}}</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500" (click)="editBooking(booking)">
+                          <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                         </td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">22-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">25-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">cell</td>
-
                     </tr>
-                    <tr>
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Goa
-                        </td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">22-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">25-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">cell</td>
-
-                    </tr>
-                    <tr>
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Goa
-                        </td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">22-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">25-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">cell</td>
-
-                    </tr>
-                    <tr>
-                      <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">Goa
-                        </td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">22-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">25-11-2021</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">4</td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">cell</td>
-
-                    </tr>
-
-                    <!-- More people... -->
+                    </ng-container>
                   </tbody>
                 </table>
               </div>
@@ -79,60 +51,59 @@
           </div>
         </div>
       </div>
-
     </div>
     <div class="col-span-2 px-4 flex items-center justify-end">
       <div class="max-w-lg mx-auto w-full space-y-8 lg:mx-0">
-        <form class="mt-2">
+        <form class="mt-2" [formGroup]="bookingForm">
           <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
             <div class="gt-xs:max-w-64 gt-xs:pr-12 mb-4">
-              <p class="text-lg font-medium">New booking</p>
+              <p class="text-lg font-medium">{{isUpdateBooking ? 'Update booking': 'New booking'}}</p>
             </div>
             <div class="flex flex-col flex-auto p-5 pb-6 bg-card shadow rounded overflow-hidden">
               <mat-form-field class="fuse-mat-dense flex-auto">
                 <mat-label>Place</mat-label>
-                <mat-select>
+                <mat-select formControlName="property">
                   <mat-option value="Place-1">Place 1</mat-option>
                   <mat-option value="Place-2">Place 2</mat-option>
                   <mat-option value="Place-3">Place 3</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-form-field class="fuse-mat-dense flex-auto">
+
+              <mat-form-field>
                 <mat-label>Date of Checkin</mat-label>
-                <input matInput>
-              </mat-form-field>
-              <mat-form-field class="fuse-mat-dense flex-auto">
-                <mat-label>Date of Checkout
-                </mat-label>
-                <input matInput>
-              </mat-form-field>
-              <mat-form-field class="fuse-mat-dense flex-auto">
-                <mat-label>Spouse</mat-label>
-                <input matInput>
-              </mat-form-field>
-              <mat-form-field class="fuse-mat-dense flex-auto">
-                <mat-label>Child 1 name</mat-label>
-                <input matInput>
+                <input matInput [matDatepicker]="checkInDate" formControlName="checkInDate">
+                <mat-datepicker-toggle matIconSuffix [for]="checkInDate"></mat-datepicker-toggle>
+                <mat-datepicker #checkInDate></mat-datepicker>
               </mat-form-field>
 
-              <mat-form-field class="fuse-mat-dense flex-auto">
-                <mat-label>Child 2 name</mat-label>
-                <input matInput>
+              <mat-form-field>
+                <mat-label>Date of Checkout</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="checkOutDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
 
+
               <mat-form-field class="fuse-mat-dense flex-auto">
-                <mat-label>No of persons</mat-label>
-                <input matInput>
+                <mat-label>No of adults</mat-label>
+                <input type="number" matInput formControlName="noOfAdults">
+              </mat-form-field>
+              <mat-form-field  class="fuse-mat-dense flex-auto">
+                <mat-label>No of children</mat-label>
+                <input type="number" matInput formControlName="noOfChildren">
               </mat-form-field>
             </div>
           </div>
 
           <div class="flex items-center justify-end mt-10">
-            <button mat-button>
+            <button mat-button (click)="clear()">
               Cancel
             </button>
-            <button class="px-6 ml-3" mat-flat-button [color]="'primary'">
-              Save
+            <button class="px-6 ml-3" *ngIf="!isUpdateBooking" (click)="createBooking()" mat-flat-button [color]="'primary'">
+              Create
+            </button>
+            <button class="px-6 ml-3" *ngIf="isUpdateBooking" (click)="updateBooking()" mat-flat-button [color]="'primary'">
+              Update
             </button>
           </div>
         </form>
