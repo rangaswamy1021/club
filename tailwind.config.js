@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{html,ts,scss}",
   ],
   theme: {
-
+    extend: {
+			fontFamily: {
+          body: ['Lato', 'sans-serif'],
+      },
+		}
   },
   plugins: [
     require('@tailwindcss/forms'),

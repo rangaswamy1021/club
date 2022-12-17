@@ -11,10 +11,15 @@ $custom-typography: mat.define-typography-config(
 @include mat.core($custom-typography);
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Raleway', sans-serif !important;}
+// body { margin: 0; font-family: 'Raleway', sans-serif !important;}
+body {
+  margin: 0;
+	@apply font-body;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @import "./assets/scss/main.scss";
+
