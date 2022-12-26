@@ -114,17 +114,22 @@
       margin-top: 24px;
     }
   }
-
+  .mat-icon-button {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    min-height: 40px;
+  }
   /* Default style tweaks and enhancements */
   .mat-form-field-wrapper {
-    margin-bottom: 12px;
+    // margin-bottom: 12px;
     padding-bottom: 0;
 
     .mat-form-field-flex {
       position: relative;
       display: flex;
       align-items: stretch;
-      min-height: 48px;
+      // min-height: 48px;
       border-radius: 3px;
       padding: 0 16px;
       border-width: 1px;
@@ -302,7 +307,7 @@
         border: 0;
 
         .mat-input-element {
-          padding: 14px 0;
+          padding: 8px 0;
           margin-top: 0;
         }
 

@@ -91,6 +91,8 @@ export class ProfileAddEditComponent implements OnInit {
       spouseName: [''],
       spouseAge: [''],
       children: this.fb.array([]),
+      email: [''],
+      phone: [''],
     });
   }
 
@@ -105,6 +107,8 @@ export class ProfileAddEditComponent implements OnInit {
     formgp.controls['spouseAge'].patchValue(selectedData.spouseAge);
     formgp.controls['children'].patchValue(selectedData.children);
     formgp.controls['languages'].patchValue(selectedData.languages);
+    formgp.controls['email'].patchValue(selectedData.email);
+    formgp.controls['phone'].patchValue(selectedData.phone);
     this.bindChildren(selectedData.children);
     this.profileForm.patchValue(selectedData);
   }
