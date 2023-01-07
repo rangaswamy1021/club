@@ -2,7 +2,7 @@
   <h1 class="text-2xl font-semibold text-gray-900">Account</h1>
 </div>
 <div class="w-full sm:w-auto">
-  <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
+  <div class="w-full max-w-80 sm:w-2/5 mx-auto sm:mx-0">
     <!-- Title -->
     <div class="mt-6 text-xl font-semiboldtracking-tight leading-tight">Reset your password</div>
     <div class="mt-0.5 font-medium">Create a new password for your account</div>
@@ -10,9 +10,26 @@
 
     <!-- Reset password form -->
     <form class="mt-6" [formGroup]="resetPasswordForm" #resetPasswordNgForm="ngForm">
-
-      <!-- Email field -->
-      <mat-form-field class="w-full">
+      <div class="sm:flex sm:items-center mb-3">
+        <mat-label class="w-4/12 text-right pr-4">Old Password</mat-label>
+        <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
+          <input matInput class="p-1">
+        </mat-form-field>
+      </div>
+      <div class="sm:flex sm:items-center mb-3">
+        <mat-label class="w-4/12 text-right pr-4">New Password</mat-label>
+        <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
+          <input matInput class="p-1">
+        </mat-form-field>
+      </div>
+      <div class="sm:flex sm:items-center mb-3">
+        <mat-label class="w-4/12 text-right pr-4">Confirm Password</mat-label>
+        <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
+          <input matInput class="p-1">
+        </mat-form-field>
+      </div>
+      
+      <!-- <mat-form-field class="w-full">
         <mat-label>Email address</mat-label>
         <input id="email" matInput [formControlName]="'email'">
         <mat-error *ngIf="resetPasswordForm.get('email').hasError('required')">
@@ -23,7 +40,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Code field -->
       <mat-form-field class="w-full">
         <mat-label>Code</mat-label>
         <input id="code" matInput [formControlName]="'code'">
@@ -32,25 +48,26 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Password field -->
       <mat-form-field class="w-full mb-2">
         <mat-label>Password</mat-label>
         <input id="password" matInput type="password" [formControlName]="'password'" #passwordField>
         <mat-error>
           Password is required
         </mat-error>
-      </mat-form-field>
+      </mat-form-field> -->
 
 
       <!-- Submit button -->
-      <button class="fuse-mat-button-large w-full mt-3" mat-flat-button [color]="'primary'"
+      <button type="submit" class="ml-3 float-right w-full inline-flex items-center justify-center px-6 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto">Save</button>
+
+      <!-- <button class="fuse-mat-button-large w-full mt-3" mat-flat-button [color]="'primary'"
         [disabled]="resetPasswordForm.disabled" (click)="resetPassword()">
         <span *ngIf="!resetPasswordForm.disabled">
           Reset your password
         </span>
         <mat-progress-spinner *ngIf="resetPasswordForm.disabled" [diameter]="24" [mode]="'indeterminate'">
         </mat-progress-spinner>
-      </button>
+      </button> -->
 
     </form>
   </div>

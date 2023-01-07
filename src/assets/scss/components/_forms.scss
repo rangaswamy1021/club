@@ -117,8 +117,7 @@
   .mat-icon-button {
     width: 40px;
     min-width: 40px;
-    height: 40px;
-    min-height: 40px;
+    height: inherit;
   }
   /* Default style tweaks and enhancements */
   .mat-form-field-wrapper {

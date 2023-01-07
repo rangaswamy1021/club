@@ -1,29 +1,32 @@
-<div class="relative bg-white">
+<div class="relative">
   <div class="relative max-w-7xl mx-auto grid grid-cols-5">
-    <div class="bg-white pr-4 col-span-3">
+    <div class="pr-4 col-span-3">
       <!-- This example requires Tailwind CSS v2.0+ -->
       <div class="">
         <div class="sm:flex sm:items-center">
           <div class="sm:flex-auto">
-            <h1 class="text-xl font-semibold text-gray-900">Visited places</h1>
+            <h1 class="text-xl font-semibold text-gray-900">Book a trip</h1>
           </div>
         </div>
         <div class="mt-2 flex flex-col">
           <div class="overflow-x-auto -mx-2">
             <div class="inline-block min-w-full py-2 align-middle px-2">
               <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-300">
-                  <thead class="bg-gray-50">
+                <table class="min-w-full">
+                  <thead class="bg-orange-500 text-white">
+                    <th class="py-3.5 pl-4 pr-3 text-left font-semibold sm:pl-6" scope="col" colspan="5">
+                      Booking History
+                    </th>
+                  </thead>
+                  <thead class="bg-orange-300">
                     <tr>
-                      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">
                         Place</th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Checkin</th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Checkout</th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">No of Adults
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">Checkin</th>
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">Checkout</th>
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">No of Adults
                       </th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">No of Childs
-                      </th>
-                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Action
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold">No of Childs
                       </th>
                     </tr>
                   </thead>
@@ -39,9 +42,6 @@
                           {{booking?.checkOutDate | date:'dd-MM-YYYY'}}</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{booking?.noOfAdults}}</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{booking?.noOfChildren}}</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500" (click)="editBooking(booking)">
-                          <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                        </td>
                     </tr>
                     </ng-container>
                   </tbody>
@@ -52,57 +52,70 @@
         </div>
       </div>
     </div>
-    <div class="col-span-2 px-4 flex items-center justify-end">
+    <div class="col-span-2 px-4 flex justify-end">
       <div class="max-w-lg mx-auto w-full space-y-8 lg:mx-0">
         <form class="mt-2" [formGroup]="bookingForm">
           <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
             <div class="gt-xs:max-w-64 gt-xs:pr-12 mb-4">
               <p class="text-lg font-medium">{{isUpdateBooking ? 'Update booking': 'New booking'}}</p>
             </div>
-            <div class="flex flex-col flex-auto p-5 pb-6 bg-card shadow rounded overflow-hidden">
-              <mat-form-field class="fuse-mat-dense flex-auto">
-                <mat-label>Place</mat-label>
-                <mat-select formControlName="property">
+            <div class="flex flex-col flex-auto p-5 pb-6 overflow-hidden">
+              <div class="sm:flex sm:items-center mb-3">
+                <mat-label class="w-4/12 text-right pr-4">Place</mat-label>
+                <mat-form-field class=" flex-auto">
+                <mat-select formControlName="property" class="fuse-mat-dense flex-auto w-8/12">
                   <mat-option value="Place-1">Place 1</mat-option>
                   <mat-option value="Place-2">Place 2</mat-option>
                   <mat-option value="Place-3">Place 3</mat-option>
                 </mat-select>
               </mat-form-field>
-
-              <mat-form-field>
-                <mat-label>Date of Checkin</mat-label>
-                <input matInput [matDatepicker]="checkInDate" formControlName="checkInDate">
+              </div>
+              <div class="sm:flex sm:items-center mb-3">
+                <mat-label class="w-4/12 text-right pr-4">Date of Checkin</mat-label>
+                <mat-form-field class="fuse-mat-dense flex-auto w-8/12" appearance="fill">
+                  <input matInput [matDatepicker]="checkInDate" formControlName="checkInDate">
                 <mat-datepicker-toggle matIconSuffix [for]="checkInDate"></mat-datepicker-toggle>
                 <mat-datepicker #checkInDate></mat-datepicker>
-              </mat-form-field>
-
-              <mat-form-field>
-                <mat-label>Date of Checkout</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="checkOutDate">
+                </mat-form-field>
+              </div>
+              <div class="sm:flex sm:items-center mb-3">
+                <mat-label class="w-4/12 text-right pr-4">Date of Checkout</mat-label>
+                <mat-form-field class="fuse-mat-dense flex-auto w-8/12" appearance="fill">
+                  <input matInput [matDatepicker]="picker" formControlName="checkOutDate">
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
+                </mat-form-field>
+              </div>
 
-
-              <mat-form-field class="fuse-mat-dense flex-auto">
-                <mat-label>No of adults</mat-label>
-                <input type="number" matInput formControlName="noOfAdults">
-              </mat-form-field>
-              <mat-form-field  class="fuse-mat-dense flex-auto">
-                <mat-label>No of children</mat-label>
-                <input type="number" matInput formControlName="noOfChildren">
-              </mat-form-field>
+              <div class="sm:flex sm:items-center mb-3">
+                <mat-label class="w-4/12 text-right pr-4">Spouse</mat-label>
+                <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
+                  <input matInput  class="p-3">
+                </mat-form-field>
+              </div>
+              <div class="sm:flex sm:items-center mb-3">
+                <mat-label class="w-4/12 text-right pr-4">Children</mat-label>
+                <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
+                  <input matInput  class="p-3">
+                </mat-form-field>
+              </div>
+              <div class="sm:flex sm:items-center mb-3">
+                <mat-label class="w-4/12 text-right pr-4">No of persons</mat-label>
+                <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
+                  <input matInput formControlName="noOfAdults" class="p-3">
+                </mat-form-field>
+              </div>
             </div>
           </div>
 
           <div class="flex items-center justify-end mt-10">
-            <button mat-button (click)="clear()">
+            <button mat-button (click)="clear()" class="w-full inline-flex items-center justify-center px-6 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto">
               Cancel
             </button>
-            <button class="px-6 ml-3" *ngIf="!isUpdateBooking" (click)="createBooking()" mat-flat-button [color]="'primary'">
+            <button class="ml-3 w-full inline-flex items-center justify-center px-6 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto" *ngIf="!isUpdateBooking" (click)="createBooking()">
               Create
             </button>
-            <button class="px-6 ml-3" *ngIf="isUpdateBooking" (click)="updateBooking()" mat-flat-button [color]="'primary'">
+            <button class="ml-3 w-full inline-flex items-center justify-center px-6 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto" *ngIf="isUpdateBooking" (click)="updateBooking()">
               Update
             </button>
           </div>
