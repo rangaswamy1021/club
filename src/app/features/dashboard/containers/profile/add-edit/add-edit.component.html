@@ -1,43 +1,43 @@
 <div class="flex">
   <h1 class="w-1/2 text-2xl font-semibold text-gray-900">Profile</h1>
   <div class="w-1/2 text-right">
-    <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto" >Cancel</button>
+    <button type="submit" class="inline-flex items-center justify-center px-6 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-auto" >Cancel</button>
 
-    <button type="submit" class="ml-3 w-full inline-flex items-center justify-center px-6 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto" (click)="save()">Save</button>
+    <button type="submit" class="ml-3 inline-flex items-center justify-center px-6 py-1 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-auto" (click)="save()">Save</button>
   </div>
 </div>
 <form class="flex flex-col mt-4 bg-card rounded overflow-hidden" [formGroup]="profileForm"
   #profileNgForm="ngForm">
-  <div class="flex">
-    <div class="w-1/3 pr-20">
+  <div class="relative max-w-7xl mx-auto gap-8 grid grid-cols-5">
+    <div class="md:col-span-2 col-span-12">
       <div class="max-w-7xl mx-auto mb-4">
         <label class="font-semibold">Personal Details</label>
       </div>
-        <div class="sm:flex sm:items-center mb-3">
+        <div class="flex items-center mb-3">
           <mat-label class="w-4/12 text-right pr-4">First Name</mat-label>
           <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
             <input matInput formControlName="firstName" class="p-1">
           </mat-form-field>
         </div>
-        <div class="sm:flex sm:items-center mb-3">
+        <div class="flex items-center mb-3">
           <mat-label class="w-4/12 text-right pr-4">Last Name</mat-label>
           <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
             <input matInput formControlName="lastName" class="p-3">
           </mat-form-field>
         </div>
-        <div class="sm:flex sm:items-center mb-3">
+        <div class="flex items-center mb-3">
           <mat-label class="w-4/12 text-right pr-4">Email</mat-label>
           <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
             <input matInput formControlName="email" class="p-3">
           </mat-form-field>
         </div>
-        <div class="sm:flex sm:items-center mb-3">
+        <div class="flex items-center mb-3">
           <mat-label class="w-4/12 text-right pr-4">Phone</mat-label>
           <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
             <input matInput formControlName="phone" class="p-3">
           </mat-form-field>
         </div>
-        <div class="sm:flex sm:items-center mb-3">
+        <div class="flex items-center mb-3">
           <mat-label class="w-4/12 text-right pr-4">Date of Birth</mat-label>
           <mat-form-field class="fuse-mat-dense flex-auto w-8/12" appearance="fill">
             <input matInput [matDatepicker]="dateOfBirth" formControlName="dob">
@@ -45,7 +45,7 @@
             <mat-datepicker #dateOfBirth></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="sm:flex sm:items-top">
+        <div class="flex items-top mb-3">
           <mat-label class="w-4/12 text-right pr-4">Languages</mat-label>
           <div class="w-8/12">
             <div class="capitalize" *ngFor="let language of languagesList; let i = index">
@@ -57,23 +57,23 @@
           </div>
         </div>
     </div>
-    <div class="w-1/3">
+    <div class="md:col-span-2 col-span-12">
       <div class="max-w-7xl mx-auto mb-4">
         <label class="font-semibold">Family Details</label>
       </div>
-      <div class="sm:flex sm:items-center mb-3">
+      <div class="flex items-center mb-3">
         <mat-label class="w-4/12 text-right pr-4">Spouse</mat-label>
         <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
           <input matInput formControlName="spouseName" class="p-3">
         </mat-form-field>
       </div>
-      <div class="sm:flex sm:items-center mb-3">
+      <div class="flex items-center mb-3">
         <mat-label class="w-4/12 text-right pr-4">Spouse Age</mat-label>
         <mat-form-field class="fuse-mat-dense flex-auto w-8/12">
           <input matInput formControlName="spouseAge" class="p-3">
         </mat-form-field>
       </div>
-      <div class="sm:flex sm:items-center mb-3">
+      <div class="flex items-center mb-3">
         <mat-label class="w-4/12 text-right pr-4">Anniversary</mat-label>
         <mat-form-field class="fuse-mat-dense flex-auto w-8/12" appearance="fill">
           <input matInput [matDatepicker]="anniversary" formControlName="anniversary">
@@ -81,7 +81,7 @@
           <mat-datepicker #anniversary></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="sm:flex sm:items-center mb-3">
+      <div class="flex items-center mb-3">
         <h1 class="w-4/12 text-right pr-4">Add Children</h1>
         <button mat-mini-fab (click)="addChildren()">
           <mat-icon class="add-course-btn">add</mat-icon>
