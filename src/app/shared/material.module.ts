@@ -15,6 +15,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -35,7 +37,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
 })
 export class MaterialModule {}
